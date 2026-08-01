@@ -1,0 +1,5 @@
+component,ppf_mean,ppf_std,cycle_mean,n_below_floor,n_seeds,delta_vs_qica,verdict
+nsga2_2obj (best-PPF point on front),1.5675176,0.0,347.78003,1,1,0.16907784938812265,beats QICA
+nsga2_3obj_entropy (best-PPF point on front),1.5428264,0.0,442.0985,1,1,0.1937690734863282,beats QICA
+unc_penalty+grad_sens,1.9395281,0.04849473,325.24063,2,5,-0.20293262004852286,QICA wins
+unc_penalty+sobol,1.9144799,0.032550756,322.3644,4,5,-0.1778843641281127,QICA wins
