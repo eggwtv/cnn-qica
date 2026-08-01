@@ -1,0 +1,4 @@
+round,n_flagged_sigma,n_flagged_dmd,agreement_frac,n_disagree,n_queried,held_out_ppf_mae
+0,125,125,0.696,152,15,0.06251744855468681
+1,125,125,0.668,166,15,0.07776786534022623
+2,125,125,0.628,186,15,0.10219473119051115

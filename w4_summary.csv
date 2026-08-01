@@ -1,0 +1,2 @@
+workflow,n_rounds,total_wall_time_s,final_training_size,mean_agreement_sigma_dmd,final_held_out_ppf_mae
+W4_ActiveLearning_CNN,3,2170.601539850235,8545,0.664,0.10219473119051115
