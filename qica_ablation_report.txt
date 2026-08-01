@@ -1,0 +1,46 @@
+==============================================================================
+QICA ABLATION REPORT
+==============================================================================
+Budget: pop=60 empires=6 gens=60 mc=15 (QUICK_MODE)
+
+-- ALL ARMS, sorted by best_ppf (lower = better) --
+                        arm entropy_mode  injection_on  escalation_on  best_ppf  best_cycle  al_unique_candidates  injection_count  hard_reset_count  final_diversity  elapsed_s
+               A_gauss_only        gauss          True           True  1.913161  335.648261                   276                3                 0         0.332317  45.433750
+B_hist_escalating_injection         hist          True           True  1.914199  335.748984                   381                3                 0         0.398374  56.468039
+     B_hist_fixed_injection         hist          True          False  1.914676  336.745442                   350                3                 0         0.398269  54.215254
+        B_hist_no_injection         hist         False          False  1.920010  334.865401                   358                0                 0         0.317245  65.017356
+                A_hist_only         hist          True           True  1.941980  335.914902                   357                3                 0         0.312602  46.296163
+                A_traj_only         traj          True           True  1.947462  335.225358                   716                3                 0         0.350204  49.192023
+               A_no_entropy         none          True           True  1.957001  332.097823                     0                3                 0         0.340467  43.530010
+      A_hist_gauss_combined   hist_gauss          True           True  1.963318  336.416161                   281                3                 0         0.369160  51.905148
+       A_hist_traj_combined    hist_traj          True           True  1.972894  336.163470                   520                3                 0         0.292770  57.181430
+
+-- ENTROPY METHOD COMPARISON (injection+escalation held ON) --
+  gauss        best_ppf=1.9132  AL_candidates=276    H_hist_cv=0.108  H_gauss_cv=0.180  H_traj_cv=0.012  H_hist_sigcorr=0.722  H_gauss_sigcorr=0.982  H_traj_sigcorr=-0.083
+  hist         best_ppf=1.9420  AL_candidates=357    H_hist_cv=0.100  H_gauss_cv=0.209  H_traj_cv=0.009  H_hist_sigcorr=0.684  H_gauss_sigcorr=0.978  H_traj_sigcorr=0.130
+  traj         best_ppf=1.9475  AL_candidates=716    H_hist_cv=0.095  H_gauss_cv=0.177  H_traj_cv=0.011  H_hist_sigcorr=0.657  H_gauss_sigcorr=0.989  H_traj_sigcorr=-0.015
+  none         best_ppf=1.9570  AL_candidates=0      H_hist_cv=0.147  H_gauss_cv=0.213  H_traj_cv=0.012  H_hist_sigcorr=0.749  H_gauss_sigcorr=0.970  H_traj_sigcorr=-0.261
+  hist_gauss   best_ppf=1.9633  AL_candidates=281    H_hist_cv=0.120  H_gauss_cv=0.211  H_traj_cv=0.014  H_hist_sigcorr=0.315  H_gauss_sigcorr=0.962  H_traj_sigcorr=0.320
+  hist_traj    best_ppf=1.9729  AL_candidates=520    H_hist_cv=0.102  H_gauss_cv=0.163  H_traj_cv=0.009  H_hist_sigcorr=0.654  H_gauss_sigcorr=0.991  H_traj_sigcorr=-0.061
+
+-- INJECTION/ESCALATION COMPARISON (entropy='hist' held constant) --
+  injection=True  escalation=True   best_ppf=1.9142  injections_fired=3    hard_resets_fired=0
+  injection=True  escalation=False  best_ppf=1.9147  injections_fired=3    hard_resets_fired=0
+  injection=False escalation=False  best_ppf=1.9200  injections_fired=0    hard_resets_fired=0
+
+-- HARD-RESET VALVE CHECK --
+  A_no_entropy                     injections=3    -> never fired
+  A_gauss_only                     injections=3    -> never fired
+  A_hist_only                      injections=3    -> never fired
+  A_traj_only                      injections=3    -> never fired
+  A_hist_gauss_combined            injections=3    -> never fired
+  A_hist_traj_combined             injections=3    -> never fired
+  B_hist_escalating_injection      injections=3    -> never fired
+
+READING GUIDE:
+  - H_*_sigma_corr near 1.0 (±) => that entropy mode is a redundant monotonic
+    transform of plain MC sigma (this is H_gauss's known failure mode).
+  - High CV + low |sigma_corr| => genuinely independent signal worth keeping.
+  - Compare A-block best_ppf values directly: same seed/budget, so the gap is
+    attributable to the AL rule steering search, not luck.
+  - Compare B-block to see if injection/escalation is worth its complexity at all.

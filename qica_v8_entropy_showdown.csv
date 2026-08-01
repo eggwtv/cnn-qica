@@ -1,0 +1,7 @@
+mean_ppf,mean_sigma,mean_h_hist,mean_h_traj,diversity,overlap_with_baseline,n,rule,verdict
+1.812881698211034,0.0682304775963227,1.3670685241619747,-163.08548227945963,0.8293469387755099,1.0,60,"baseline (plain QICA, lowest PPF only)",baseline
+2.0283643285433453,0.10898484711845716,1.7549252072970072,-166.17230428059895,0.8268163265306121,0.0,60,sigma_only (highest σ),"MARGINAL — some gain, but modest; keep only if AL budget is generous"
+2.0283643285433453,0.10898484711845716,1.7549252072970072,-166.17230428059895,0.8220408163265306,0.0,60,h_gauss (highest Gaussian H),"MARGINAL — some gain, but modest; keep only if AL budget is generous"
+2.045140196879705,0.10632731206715107,1.7920059144496918,-167.07848536173503,0.8256734693877553,0.0,60,h_hist (highest calibrated histogram H),"MARGINAL — some gain, but modest; keep only if AL budget is generous"
+1.9406908432642618,0.07595831553141276,1.4457762440045674,-158.42883224487304,0.8305714285714287,0.061946902654867256,60,h_traj (highest trajectory H),"MARGINAL — some gain, but modest; keep only if AL budget is generous"
+1.9617490768432617,0.09243891028066477,1.644394544760386,-159.91353505452474,0.832326530612245,0.01694915254237288,60,combined (z(h_hist)+z(h_traj)),KEEP — finds genuinely more-uncertain patterns at little PPF cost
